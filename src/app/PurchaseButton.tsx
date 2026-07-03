@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { ShoppingCart, Loader2 } from "lucide-react";
 import { useState } from "react";
 
-export function PurchaseButton() {
+export function PurchaseButton({ planId, className }: { planId: string; className?: string }) {
   const { data: session } = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -14,20 +14,20 @@ export function PurchaseButton() {
     if (!session) { router.push("/login"); return; }
     setLoading(true);
     try {
-      const res = await fetch("/api/checkout", { method: "POST" });
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ planId }),
+      });
       const data = await res.json();
-      if (data.url) { window.location.href = data.url; }
+      if (data.url) window.location.href = data.url;
       else { alert(data.error || "创建订单失败"); setLoading(false); }
     } catch { alert("网络错误"); setLoading(false); }
   }
 
   return (
-    <button onClick={handleBuy} disabled={loading} className="btn-primary mt-8 w-full">
-      {loading ? (
-        <Loader2 className="h-4 w-4 animate-spin" />
-      ) : (
-        <><ShoppingCart className="mr-2 h-4 w-4" />立即购买</>
-      )}
+    <button onClick={handleBuy} disabled={loading} className={className || "btn-primary mt-8 w-full"}>
+      {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <><ShoppingCart className="mr-2 h-4 w-4" />购买</>}
     </button>
   );
 }

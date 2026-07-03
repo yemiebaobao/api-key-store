@@ -8,17 +8,17 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: { label: "邮箱", type: "email" },
-        password: { label: "密码", type: "password" },
+        email: { label: "email", type: "email" },
+        password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("请输入邮箱和密码");
+          throw new Error("Email and password required");
         }
         const user = await getUserByEmail(credentials.email);
-        if (!user) throw new Error("邮箱或密码错误");
+        if (!user) throw new Error("Invalid credentials");
         const isValid = await bcrypt.compare(credentials.password, user.password);
-        if (!isValid) throw new Error("邮箱或密码错误");
+        if (!isValid) throw new Error("Invalid credentials");
         return { id: user.id, email: user.email, name: user.name };
       },
     }),
