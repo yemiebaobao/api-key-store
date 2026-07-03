@@ -102,4 +102,5 @@ export function verifyWebhook(body: string, signature: string): boolean {
   const hmac = crypto.createHmac("sha256", secret);
   const digest = hmac.update(body, "utf-8").digest("hex");
   try { return crypto.timingSafeEqual(Buffer.from(digest), Buffer.from(signature)); } catch { return false; }
-}
+}// vercel redeploy trigger
+// trigger redeploy - 03:23:35
