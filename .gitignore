@@ -13,3 +13,4 @@ test-*.mp3
 test-*.json
 test-*.txt
 
+.vercel
