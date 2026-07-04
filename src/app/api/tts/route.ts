@@ -1,4 +1,4 @@
-﻿import { NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 import { execFileSync } from "child_process";
 import { join } from "path";
 
