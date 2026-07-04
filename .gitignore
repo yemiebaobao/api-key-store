@@ -6,3 +6,10 @@ data/
 .env*.local
 *.tsbuildinfo
 next-env.d.ts
+
+# Test artifacts
+.dev-server*.log
+test-*.mp3
+test-*.json
+test-*.txt
+
