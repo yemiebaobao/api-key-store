@@ -1,4 +1,4 @@
-import crypto from "crypto";
+﻿import crypto from "crypto";
 const LS_API_BASE = "https://api.lemonsqueezy.com/v1";
 
 export interface Plan {
@@ -12,42 +12,10 @@ export interface Plan {
 }
 
 export const PLANS: Plan[] = [
-  {
-    id: "starter",
-    name: "Starter",
-    price: 2.99,
-    priceCents: 299,
-    tokens: 1000000,
-    description: "For personal use and testing",
-    features: ["1M Tokens", "OpenAI compatible", "No expiry"],
-  },
-  {
-    id: "standard",
-    name: "Standard",
-    price: 19.99,
-    priceCents: 1999,
-    tokens: 10000000,
-    description: "For daily development",
-    features: ["10M Tokens", "OpenAI compatible", "No expiry", "Best value"],
-  },
-  {
-    id: "pro",
-    name: "Pro",
-    price: 49.99,
-    priceCents: 4999,
-    tokens: 30000000,
-    description: "For high frequency usage",
-    features: ["30M Tokens", "OpenAI compatible", "No expiry", "Lowest unit price"],
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    price: 79.99,
-    priceCents: 7999,
-    tokens: 80000000,
-    description: "For teams and business",
-    features: ["80M Tokens", "OpenAI compatible", "No expiry", "Priority support"],
-  },
+  { id: "starter", name: "Starter", price: 2.99, priceCents: 299, tokens: 1000000, description: "For personal use and testing", features: ["1M Tokens", "OpenAI compatible", "No expiry"] },
+  { id: "standard", name: "Standard", price: 19.99, priceCents: 1999, tokens: 10000000, description: "For daily development", features: ["10M Tokens", "OpenAI compatible", "No expiry", "Best value"] },
+  { id: "pro", name: "Pro", price: 49.99, priceCents: 4999, tokens: 30000000, description: "For high frequency usage", features: ["30M Tokens", "OpenAI compatible", "No expiry", "Lowest unit price"] },
+  { id: "enterprise", name: "Enterprise", price: 79.99, priceCents: 7999, tokens: 80000000, description: "For teams and business", features: ["80M Tokens", "OpenAI compatible", "No expiry", "Priority support"] },
 ];
 
 export function getPlanById(id: string): Plan | undefined {
@@ -102,5 +70,5 @@ export function verifyWebhook(body: string, signature: string): boolean {
   const hmac = crypto.createHmac("sha256", secret);
   const digest = hmac.update(body, "utf-8").digest("hex");
   try { return crypto.timingSafeEqual(Buffer.from(digest), Buffer.from(signature)); } catch { return false; }
-}// vercel redeploy trigger
+}
 

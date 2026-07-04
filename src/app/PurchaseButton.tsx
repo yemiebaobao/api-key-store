@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ShoppingCart, Loader2, X, CheckCheck, CreditCard } from "lucide-react";
@@ -110,7 +110,7 @@ export function PurchaseButton({ planId, className }: { planId: string; classNam
           <>
             <h2 className="text-xl font-bold text-gray-900 text-center">{modal.plan?.name || "Order"}</h2>
             <div className="text-center mt-2">
-              <span className="text-3xl font-bold text-gray-900">{modal.price ? "¥" + modal.price : ""}</span>
+              <span className="text-3xl font-bold text-gray-900">{modal.price ? "楼" + modal.price : ""}</span>
             </div>
             <p className="text-center text-sm text-gray-500 mt-1">{((modal.plan?.tokens || 0)/10000).toFixed(0)}M Tokens</p>
 
@@ -135,7 +135,7 @@ export function PurchaseButton({ planId, className }: { planId: string; classNam
                 ) : (
                   // Manual QR (your own QR codes)
                   <>
-                    <p className="text-sm font-medium text-gray-700 mb-3">Scan to pay <strong>¥{modal.plan?.price}</strong></p>
+                    <p className="text-sm font-medium text-gray-700 mb-3">Scan to pay <strong>楼{modal.plan?.price}</strong></p>
                     <div className="w-48 h-48 mx-auto bg-white rounded-lg border flex items-center justify-center overflow-hidden">
                       <img src={payMethod==="alipay"?"/alipay-qr.jpg":"/wechat-qr.jpg"} alt="qr" className="w-full h-full object-contain"
                         onError={e=>{(e.target as HTMLImageElement).outerHTML='<div class="text-gray-400 text-xs p-4">Place your QR in<br/>public/'+(payMethod==="alipay"?"alipay-qr.jpg":"wechat-qr.jpg")+'</div>'}} />
@@ -160,3 +160,5 @@ export function PurchaseButton({ planId, className }: { planId: string; classNam
     </div>
   );
 }
+
+

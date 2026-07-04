@@ -1,9 +1,9 @@
-import { PLANS } from "@/lib/pricing";
+﻿import { PLANS } from "@/lib/pricing";
 import { PurchaseButton } from "./PurchaseButton";
 import { Check, Crown } from "lucide-react";
 
 function formatPrice(p: number): string {
-  return "¥" + (p % 1 === 0 ? p.toString() : p.toFixed(1));
+  return "$" + (p % 1 === 0 ? p.toString() : p.toFixed(1));
 }
 
 export default function HomePage() {
@@ -60,3 +60,4 @@ export default function HomePage() {
     </div>
   );
 }
+
